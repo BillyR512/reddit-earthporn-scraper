@@ -6,9 +6,9 @@ Simple python scraper for reddit using standard python libraries. I use this scr
 
 # Automator Setup
 
-* Bullet 1 Open Automator -> cmd + spacebar - type in Automator
-* Bullet 2 Select New Application
-* Bullet 3 Select "Run AppleScript" in the available actions menu and copy/modify the script below
+* Open Automator -> cmd + spacebar - type in Automator
+* Select New Application
+* Select "Run AppleScript" in the available actions menu and copy/modify the script below
 
 Sample Script -
 
