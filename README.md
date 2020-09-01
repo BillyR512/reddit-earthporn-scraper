@@ -32,4 +32,9 @@ Sample Script -
 For the CronniX command, modify the script below:
 
     /usr/bin/open "/path/to/your/automator/app.app"
-
+    
+# Windows Cron
+* Create 'scraper.bat'
+* Paste ``` "Path where your Python exe is stored\python.exe" "Path where your Python script is stored\script name.py" ```
+* Save file, run it to test
+* Schedule the Python Script using Windows Scheduler
