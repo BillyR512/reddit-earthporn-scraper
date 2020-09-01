@@ -1,6 +1,4 @@
-#!/usr/bin/env python
-
-import urllib
+import urllib.request
 import time
 import re
 import os
@@ -10,9 +8,8 @@ url_string = "http://www.reddit.com/r/EarthPorn/top/?sort=top&t=day"
 # default folder to save images
 folder = 'img/'
 
-
 def run_scraper():
-    delete_old_images()
+    delete_old_images() # cleans out previously downloaded images
     [url_list, number_images] = get_links()
     img_name = 0
     num_urls = len(url_list)
@@ -28,29 +25,25 @@ def run_scraper():
 
 
 def get_links():
-
-    html_source = urllib.urlopen(url_string).read().decode("iso-8859-1")
-    url_list = re.findall("http://i.imgur.com/\w+.jpg", html_source)
+    req = urllib.request.Request(url_string, headers={'User-Agent': 'Mozilla/5.0'})
+    html_source = urllib.request.urlopen(req).read().decode("iso-8859-1")
+    # Reddit selfhost images now not using imgur
+    url_list = re.findall("https://i.redd.it/\w+.jpg", str(html_source))
     number_images = len(url_list)
     return url_list, number_images
 
 
 def get_images(img_url, fileName):
-
-    image = urllib.URLopener()
-    image.retrieve(img_url, fileName)
-
+    return urllib.request.urlretrieve(img_url, fileName)
 
 def delete_old_images():
-
     for the_file in os.listdir(folder):
         file_path = os.path.join(folder, the_file)
         try:
             if os.path.isfile(file_path):
                 os.unlink(file_path)
-        except Exception, e:
-            print e
-
+        except Exception as e:
+            print (e)
 
 if __name__ == "__main__":
     run_scraper()
